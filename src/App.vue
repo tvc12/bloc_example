@@ -1,12 +1,37 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div>
+      <button style="margin-right: 4px" @click.stop="increase">Increase</button>
+      <button @click.stop="decrease">Decrease</button>
     </div>
-    <router-view />
+    <CounterPanel :bloc="bloc"></CounterPanel>
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import { CounterBloc } from "@/components/CounterBloc/CounterBloc";
+import CounterPanel from "@/components/CounterPanel.vue";
+import { DecreaseCounter, IncreaseCounter } from "@/components/CounterBloc/CounterEvent";
+
+@Component({
+  components: {
+    CounterPanel
+  }
+})
+export default class App extends Vue {
+
+  private bloc = new CounterBloc();
+
+  private increase() {
+    this.bloc.add(new IncreaseCounter());
+  }
+
+  private decrease() {
+    this.bloc.add(new DecreaseCounter());
+  }
+}
+</script>
 
 <style>
 #app {
