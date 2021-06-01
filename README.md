@@ -1,34 +1,13 @@
 # bloc_example
 
-## Project setup
+- Project example use bloc for vue + typescript. Why not?
+
+## Setup
+
 ```
-yarn install
+git clone https://github.com/tvc12/bloc_example.git && yarn && yarn serve
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+### License
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Run your end-to-end tests
-```
-yarn test:e2e
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[MIT](./LICENSE) [@tvc12](https://github.com/tvc12)
