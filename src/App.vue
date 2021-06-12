@@ -1,35 +1,17 @@
 <template>
   <div id="app">
-    <div>
-      <button style="margin-right: 4px" @click.stop="increase">Increase</button>
-      <button @click.stop="decrease">Decrease</button>
-    </div>
-    <CounterPanel :bloc="bloc"></CounterPanel>
+    <UserManagement></UserManagement>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { CounterBloc } from "@/components/CounterBloc/CounterBloc";
-import CounterPanel from "@/components/CounterPanel.vue";
-import { DecreaseCounter, IncreaseCounter } from "@/components/CounterBloc/CounterEvent";
+import UserManagement from "@/screen/UserManagement/UserManagement.vue";
 
 @Component({
-  components: {
-    CounterPanel
-  }
+  components: { UserManagement }
 })
 export default class App extends Vue {
-
-  private bloc = new CounterBloc();
-
-  private increase() {
-    this.bloc.add(new IncreaseCounter());
-  }
-
-  private decrease() {
-    this.bloc.add(new DecreaseCounter());
-  }
 }
 </script>
 

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import VueBlocComponents from "@/components/VueBloc/install";
+import VueBlocComponents from "@/Bloc/VueBloc/install";
 
 Vue.config.productionTip = false;
 Vue.use(VueBlocComponents);

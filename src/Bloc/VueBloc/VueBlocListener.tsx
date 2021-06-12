@@ -6,7 +6,7 @@
 import { RandomUtils } from "@/utils/random.utils";
 import { Emit, Prop, Vue } from "vue-property-decorator";
 import Component from "vue-class-component";
-import { Bloc as DiBloc } from "../../Bloc";
+import { Bloc as DiBloc } from "../index";
 
 @Component
 export class VueBlocListener<Event, State, Bloc extends DiBloc<Event, State>> extends Vue {
