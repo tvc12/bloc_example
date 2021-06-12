@@ -1,0 +1,36 @@
+@import '~bootstrap/dist/css/bootstrap';
+
+h1, h2, h3, h4, h5, h6, span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+  margin: unset;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  text-align: left;
+}
+
+h6 {
+  font-size: 14px;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+.btn-link {
+  text-decoration: underline;
+}
