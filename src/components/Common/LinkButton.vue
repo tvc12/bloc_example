@@ -1,5 +1,5 @@
 <template>
-  <div class="btn btn-link p-0">
+  <div class="btn btn-link p-0" @click="$emit('click', $event)">
     <h5>{{ title }}</h5>
   </div>
 </template>

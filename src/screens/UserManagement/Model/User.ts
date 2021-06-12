@@ -13,7 +13,7 @@ export class User {
     return this.roles.some((currentRole: Role) => role === currentRole);
   }
 
-  empty(): User {
+  static default(): User {
     return new User(RandomUtils.nextString(), RandomUtils.nextString(), []);
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'btn-primary': isPrimary }" class="btn d-flex align-items-center">
+  <div :class="btnClass" class="btn d-flex align-items-center" @click="$emit('click', $event)">
     <div>{{ title }}</div>
   </div>
 </template>
@@ -15,5 +15,9 @@ export default class FlatButton extends Vue {
 
   @Prop({ required: false, type: Boolean, default: false })
   private readonly isPrimary!: boolean;
+
+  private get btnClass(): any {
+    return { "btn-primary": this.isPrimary, "btn-secondary": !this.isPrimary };
+  }
 }
 </script>

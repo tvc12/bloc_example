@@ -15,19 +15,31 @@
       </div>
     </template>
     <div class="body">
-      <UserListing :role="Role.Staff" :users="users"></UserListing>
-      <UserListing :role="Role.Admin" :users="users"></UserListing>
+      <UserListing
+        :role="Role.Staff"
+        :users="users"
+        @onDelete="handleDeleteUser"
+        @onEdit="handleEditUser"
+      />
+      <UserListing
+        :role="Role.Admin"
+        :users="users"
+        @onDelete="handleDeleteUser"
+        @onEdit="handleEditUser"
+      />
     </div>
+    <UserModal ref="userModal"></UserModal>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Ref, Vue } from "vue-property-decorator";
 import UserListing from "@/screens/UserManagement/UserListing.vue";
 import { Role, User } from "@/screens/UserManagement/Model";
+import UserModal from "@/screens/UserManagement/UserModal.vue";
 
 @Component({
-  components: { UserListing }
+  components: { UserModal, UserListing },
 })
 export default class UserManagement extends Vue {
   private readonly Role = Role;
@@ -41,12 +53,15 @@ export default class UserManagement extends Vue {
     User.fake(),
     User.fake(),
     User.fake(),
-    User.fake(), User.fake(),
     User.fake(),
     User.fake(),
     User.fake(),
-    User.fake()
+    User.fake(),
+    User.fake(),
+    User.fake(),
   ];
+  @Ref()
+  private readonly userModal?: UserModal;
 
   get numUsers(): number {
     return 0;
@@ -54,6 +69,14 @@ export default class UserManagement extends Vue {
 
   get isPlurality(): boolean {
     return this.numUsers > 1;
+  }
+
+  private handleEditUser(user: User): void {
+    this.userModal?.showEditMode(user);
+  }
+
+  private handleDeleteUser(user: User): void {
+    // this.userModal?.showEditMode(user);
   }
 }
 </script>

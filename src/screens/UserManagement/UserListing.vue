@@ -16,8 +16,8 @@
               <strong>{{ user.name }}</strong>
             </h4>
             <div class="btn-bar">
-              <LinkButton title="Edit"></LinkButton>
-              <LinkButton title="Delete"></LinkButton>
+              <LinkButton title="Edit" @click.prevent="emitEdit(user)"></LinkButton>
+              <LinkButton title="Delete" @click.prevent="emitDelete(user)"></LinkButton>
             </div>
           </div>
         </template>
@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { Prop, Vue } from "vue-property-decorator";
+import { Emit, Prop, Vue } from "vue-property-decorator";
 import Component from "vue-class-component";
 import { Role, User } from "@/screens/UserManagement/Model";
 
@@ -50,6 +50,16 @@ export default class UserListing extends Vue {
 
   private get currentUsers(): User[] {
     return this.users.filter((user: User) => user.hasRole(this.role));
+  }
+
+  @Emit("onEdit")
+  private emitEdit(user: User): User {
+    return user;
+  }
+
+  @Emit("onDelete")
+  private emitDelete(user: User): User {
+    return user;
   }
 }
 </script>
