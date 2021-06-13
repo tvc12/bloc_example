@@ -56,10 +56,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Ref, Vue } from "vue-property-decorator";
+import { Component, Ref, Vue } from "vue-property-decorator";
 import { Role, User } from "@/screens/UserManagement/Model";
 import { BModal } from "bootstrap-vue";
-import { minLength, required } from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 
 enum UserModalMode {
   Edit = "edit",
@@ -69,8 +69,7 @@ enum UserModalMode {
 @Component({
   validations: {
     name: {
-      required,
-      minLength: minLength(1)
+      required
     },
     roles: {
       required
@@ -129,7 +128,6 @@ export default class UserModal extends Vue {
   }
 
   private validate(): boolean {
-    console.log("validate");
     this.$v.$touch();
     return !this.$v.$invalid;
   }
@@ -137,6 +135,7 @@ export default class UserModal extends Vue {
   private hide(): void {
     if (this.modal) {
       this.modal.hide();
+      this.$v.$reset();
     }
   }
 
@@ -156,9 +155,15 @@ export default class UserModal extends Vue {
     return user;
   }
 
-  @Emit("onSubmitUser")
-  private emitSubmitUser(user: User): User {
-    return user;
+  private emitSubmitUser(user: User) {
+    switch (this.mode) {
+      case UserModalMode.Create:
+        this.$emit("onSubmitCreatedUser", user);
+        break;
+      case UserModalMode.Edit:
+        this.$emit("onSubmitUpdatedUser", user);
+        break;
+    }
   }
 }
 </script>

@@ -66,6 +66,7 @@ export default class UserListing extends Vue {
 
 <style lang="scss">
 .user-listing-panel {
+  height: 100%;
   border: 1px solid #2b2b2b;
   border-radius: 4px;
   display: flex;
